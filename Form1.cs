@@ -25,8 +25,10 @@ namespace Anomaly_Finder_CSV
             double[] avg;
             double[] sd;
             double zthreshold;
+            int timestamp;
             List<int> nzt = new List<int>();
             List<int> ignore = new List<int>();
+            List<string> timestamptext = new List<string>();
             Stream fileStream;
 
             try
@@ -49,6 +51,12 @@ namespace Anomaly_Finder_CSV
 
             try
             {
+                timestamp = Convert.ToInt32(txtTimestamp.Text);
+            }
+            catch { timestamp = 0; }
+
+            try
+            {
                 string[] n = txtIgnore.Text.Split(',');
                 if (n.Length > 0)
                 {
@@ -56,9 +64,11 @@ namespace Anomaly_Finder_CSV
                 }
                 else
                     ignore = null;
+                if (timestamp > 0) ignore.Add(timestamp - 1); // Automatically skip timestamp if it exists
             }
             catch { ignore = null; }
 
+ 
             btnAnalyze.Enabled = false;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -126,6 +136,7 @@ namespace Anomaly_Finder_CSV
                             {
                                 try
                                 {
+                                    if (timestamp - 1 == x) timestamptext.Add(oneline[x]);
                                     dvalues[x][y] = Convert.ToDouble(oneline[x]);
                                 }
                                 catch { dvalues[x][y] = 0.0; } // Make any non numbers 0.0
@@ -140,6 +151,7 @@ namespace Anomaly_Finder_CSV
                             sw.WriteLine(",Z Score Threshold +/-: " + zthreshold.ToString());
                             sw.WriteLine(",Ignored Columns: " + txtIgnore.Text.Replace(',', '|'));
                             sw.WriteLine(",Binary Data Columns: " + txtNZT.Text.Replace(',', '|'));
+                            sw.WriteLine(",Time Stamp Column: " + timestamp.ToString());
                             sw.WriteLine();
                         }
                         catch (IOException)
@@ -175,7 +187,12 @@ namespace Anomaly_Finder_CSV
                                             if ((y - lastreading) >= 5) sw.WriteLine(); // make blank lines if it has been more than 5 readings since the last anomaly
 
                                             if (first == 0)
-                                                fileline += (y+1).ToString() + "," + header[x] + ": V= " + dvalues[x][y].ToString();
+                                            {
+                                                if (timestamp > 0)
+                                                    fileline += (y + 1).ToString() + "," + timestamptext[y] + "," + header[x] + ": V= " + dvalues[x][y].ToString();
+                                                else
+                                                    fileline += (y + 1).ToString() + "," + header[x] + ": V= " + dvalues[x][y].ToString();
+                                            }
                                             else
                                                 fileline += "," + header[x] + ": V= " + dvalues[x][y].ToString();
 
@@ -195,7 +212,10 @@ namespace Anomaly_Finder_CSV
                                     if ((y - lastreading) >= 5) sw.WriteLine(); // make blank lines if it has been more than 5 readings since the last anomaly
 
                                     if (first == 0)
-                                        fileline += (y+1).ToString() + "," + header[x] + ": V= " + dvalues[x][y].ToString() + "   Z= " + Math.Round(z, 1).ToString();
+                                        if (timestamp > 0)
+                                            fileline += (y+1).ToString() + "," + timestamptext[y] + "," + header[x] + ": V= " + dvalues[x][y].ToString() + "   Z= " + Math.Round(z, 1).ToString();
+                                        else
+                                            fileline += (y + 1).ToString() + "," + header[x] + ": V= " + dvalues[x][y].ToString() + "   Z= " + Math.Round(z, 1).ToString();
                                     else
                                         fileline += "," + header[x] + ": V= " + dvalues[x][y].ToString() + "   Z= " + Math.Round(z, 1).ToString();
 

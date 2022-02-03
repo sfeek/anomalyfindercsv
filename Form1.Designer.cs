@@ -36,6 +36,8 @@
             this.lblNZT = new System.Windows.Forms.Label();
             this.txtIgnore = new System.Windows.Forms.TextBox();
             this.lblIgnore = new System.Windows.Forms.Label();
+            this.txtTimestamp = new System.Windows.Forms.TextBox();
+            this.lblTimeStamp = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtZThreshold
@@ -57,7 +59,7 @@
             // 
             // btnAnalyze
             // 
-            this.btnAnalyze.Location = new System.Drawing.Point(73, 160);
+            this.btnAnalyze.Location = new System.Drawing.Point(67, 191);
             this.btnAnalyze.Name = "btnAnalyze";
             this.btnAnalyze.Size = new System.Drawing.Size(150, 46);
             this.btnAnalyze.TabIndex = 2;
@@ -97,11 +99,29 @@
             this.lblIgnore.TabIndex = 6;
             this.lblIgnore.Text = "Ignored Columns";
             // 
+            // txtTimestamp
+            // 
+            this.txtTimestamp.Location = new System.Drawing.Point(141, 142);
+            this.txtTimestamp.Name = "txtTimestamp";
+            this.txtTimestamp.Size = new System.Drawing.Size(100, 20);
+            this.txtTimestamp.TabIndex = 7;
+            // 
+            // lblTimeStamp
+            // 
+            this.lblTimeStamp.AutoSize = true;
+            this.lblTimeStamp.Location = new System.Drawing.Point(34, 145);
+            this.lblTimeStamp.Name = "lblTimeStamp";
+            this.lblTimeStamp.Size = new System.Drawing.Size(101, 13);
+            this.lblTimeStamp.TabIndex = 8;
+            this.lblTimeStamp.Text = "Time Stamp Column";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(285, 218);
+            this.ClientSize = new System.Drawing.Size(285, 260);
+            this.Controls.Add(this.lblTimeStamp);
+            this.Controls.Add(this.txtTimestamp);
             this.Controls.Add(this.lblIgnore);
             this.Controls.Add(this.txtIgnore);
             this.Controls.Add(this.lblNZT);
@@ -113,7 +133,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Anomaly Finder CSV v1.10";
+            this.Text = "Anomaly Finder CSV v1.20";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,6 +148,8 @@
         private System.Windows.Forms.Label lblNZT;
         private System.Windows.Forms.TextBox txtIgnore;
         private System.Windows.Forms.Label lblIgnore;
+        private System.Windows.Forms.TextBox txtTimestamp;
+        private System.Windows.Forms.Label lblTimeStamp;
     }
 }
 
