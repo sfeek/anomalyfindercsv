@@ -21,6 +21,7 @@ namespace Anomaly_Finder_CSV
             int columncount = 0;
             string[] header;
             double[][] dvalues;
+            string[] timestamps;
             string[] oneline;
             double[] avg;
             double[] sd;
@@ -68,7 +69,16 @@ namespace Anomaly_Finder_CSV
             }
             catch { ignore = null; }
 
+<<<<<<< HEAD
  
+=======
+            try
+            {
+                timestamp = Convert.ToInt32(txtTimestamp.Text) - 1;
+            }
+            catch { timestamp = -1; }
+
+>>>>>>> 9dd9f009d954b04de0861ee2b30567b8d80293d8
             btnAnalyze.Enabled = false;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -110,6 +120,8 @@ namespace Anomaly_Finder_CSV
                             counter++;
                         }
 
+                        timestamps = new string[counter]; // Make space for timestamps
+
                         fileStream.Position = 0; // Reset to beginning of the file
                         reader.DiscardBufferedData(); 
 
@@ -132,6 +144,11 @@ namespace Anomaly_Finder_CSV
 
                             oneline = line.Split(',');
 
+                            if (timestamp > -1)
+                                timestamps[y] = oneline[timestamp];
+                            else
+                                timestamps[y] = String.Empty;
+
                             for (int x = 0; x < columncount; x++)
                             {
                                 try
@@ -148,10 +165,16 @@ namespace Anomaly_Finder_CSV
                     {
                         try
                         {
+<<<<<<< HEAD
                             sw.WriteLine(",Z Score Threshold +/-: " + zthreshold.ToString());
                             sw.WriteLine(",Ignored Columns: " + txtIgnore.Text.Replace(',', '|'));
                             sw.WriteLine(",Binary Data Columns: " + txtNZT.Text.Replace(',', '|'));
                             sw.WriteLine(",Time Stamp Column: " + timestamp.ToString());
+=======
+                            sw.WriteLine("Z Score Threshold +/-: " + zthreshold.ToString());
+                            sw.WriteLine("Ignored Columns: " + txtIgnore.Text.Replace(',', '|'));
+                            sw.WriteLine("Binary Data Columns: " + txtNZT.Text.Replace(',', '|'));
+>>>>>>> 9dd9f009d954b04de0861ee2b30567b8d80293d8
                             sw.WriteLine();
                         }
                         catch (IOException)
@@ -187,12 +210,21 @@ namespace Anomaly_Finder_CSV
                                             if ((y - lastreading) >= 5) sw.WriteLine(); // make blank lines if it has been more than 5 readings since the last anomaly
 
                                             if (first == 0)
+<<<<<<< HEAD
                                             {
                                                 if (timestamp > 0)
                                                     fileline += (y + 1).ToString() + "," + timestamptext[y] + "," + header[x] + ": V= " + dvalues[x][y].ToString();
                                                 else
                                                     fileline += (y + 1).ToString() + "," + header[x] + ": V= " + dvalues[x][y].ToString();
                                             }
+=======
+                                            { 
+                                                if (timestamp == -1)
+                                                    fileline += (y + 1).ToString() + "," + header[x] + ": V= " + dvalues[x][y].ToString();
+                                                else
+                                                    fileline += timestamps[y] + "," + header[x] + ": V= " + dvalues[x][y].ToString();
+                                            }       
+>>>>>>> 9dd9f009d954b04de0861ee2b30567b8d80293d8
                                             else
                                                 fileline += "," + header[x] + ": V= " + dvalues[x][y].ToString();
 
@@ -212,10 +244,17 @@ namespace Anomaly_Finder_CSV
                                     if ((y - lastreading) >= 5) sw.WriteLine(); // make blank lines if it has been more than 5 readings since the last anomaly
 
                                     if (first == 0)
+<<<<<<< HEAD
                                         if (timestamp > 0)
                                             fileline += (y+1).ToString() + "," + timestamptext[y] + "," + header[x] + ": V= " + dvalues[x][y].ToString() + "   Z= " + Math.Round(z, 1).ToString();
                                         else
                                             fileline += (y + 1).ToString() + "," + header[x] + ": V= " + dvalues[x][y].ToString() + "   Z= " + Math.Round(z, 1).ToString();
+=======
+                                        if (timestamp == -1)
+                                            fileline += (y+1).ToString() + "," + header[x] + ": V= " + dvalues[x][y].ToString() + "   Z= " + Math.Round(z, 1).ToString();
+                                        else
+                                            fileline += timestamps[y] + "," + header[x] + ": V= " + dvalues[x][y].ToString() + "   Z= " + Math.Round(z, 1).ToString();
+>>>>>>> 9dd9f009d954b04de0861ee2b30567b8d80293d8
                                     else
                                         fileline += "," + header[x] + ": V= " + dvalues[x][y].ToString() + "   Z= " + Math.Round(z, 1).ToString();
 
