@@ -1,0 +1,15 @@
+D:\Source Code\anomalyfindercsv\bin\Debug\Anomaly Finder CSV.exe.config
+D:\Source Code\anomalyfindercsv\bin\Debug\Anomaly Finder CSV.exe.manifest
+D:\Source Code\anomalyfindercsv\bin\Debug\Anomaly Finder CSV.application
+D:\Source Code\anomalyfindercsv\bin\Debug\Anomaly Finder CSV.exe
+D:\Source Code\anomalyfindercsv\bin\Debug\Anomaly Finder CSV.pdb
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly Finder CSV.csproj.AssemblyReference.cache
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly Finder CSV.csproj.SuggestedBindingRedirects.cache
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly_Finder_CSV.Form1.resources
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly_Finder_CSV.Properties.Resources.resources
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly Finder CSV.csproj.GenerateResource.cache
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly Finder CSV.csproj.CoreCompileInputs.cache
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly Finder CSV.exe.manifest
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly Finder CSV.application
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly Finder CSV.exe
+D:\Source Code\anomalyfindercsv\obj\Debug\Anomaly Finder CSV.pdb

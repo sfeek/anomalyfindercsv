@@ -7,7 +7,7 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Application Files\Anomaly Finder CSV_1_2_0_0\Anomaly Finder CSV.exe.manifest" size="4015">
+    <dependentAssembly dependencyType="install" codebase="Anomaly Finder CSV.exe.manifest" size="4015">
       <assemblyIdentity name="Anomaly Finder CSV.exe" version="1.2.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
